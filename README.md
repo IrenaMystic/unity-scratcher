@@ -8,6 +8,6 @@ The prize collection is an asset that can be created from the "Assets" tab just 
 
 Example: [https://youtu.be/nHrZXyP7ojk](https://youtu.be/nHrZXyP7ojk?t=53)
 
-### License
+## License
 
 MIT
