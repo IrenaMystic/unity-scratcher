@@ -1,3 +1,4 @@
+# Scratcher
 
 This project contains an implementation of a scratcher that can be used in Unity. It contains a standalone prefab object
 which dropped in a scene will work immediatly. The scratcher only needs a prizes collection from which it will generate
