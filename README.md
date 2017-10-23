@@ -7,3 +7,7 @@ a random prize.
 The prize collection is an asset that can be created from the "Assets" tab just like creating any other asset. It is
 consisted of a list of prizes which type is corresponding to the provided Item. Different types of Items can be created
 as assets from the "Assets" tab.
+
+# License
+
+MIT
