@@ -12,6 +12,8 @@ public class PrizeTicket : MonoBehaviour {
 
 	public Transform grid;
 
+	public PrizeCollection lastPrizeCollection;
+
 	private Sticker[] stickers = new Sticker[numStickerSlots];
 
 	private PrizeCollection prizeCollection;
@@ -29,16 +31,20 @@ public class PrizeTicket : MonoBehaviour {
 	}
 
 	void Start () {
-		
+		Init (null);
 	}
 
 	public void Init(PrizeCollection collection) {
 		if (collection != null) {
 			prizeCollection = collection;
+		} else {
+			prizeCollection = lastPrizeCollection;
 		}
 
 		if (prizeCollection == null)
 			return;
+
+		lastPrizeCollection = prizeCollection;
 
 		GeneratePrizes ();
 
@@ -92,6 +98,7 @@ public class PrizeTicket : MonoBehaviour {
 
 	private void PopulateStickers () 
 	{
+		countFinalPrize = 0;
 		int countOtherPrizes = 0;
 		for (int i = 0; i < stickers.Length; ++i) {
 			float chance = UnityEngine.Random.Range (0.0f, 1.0f);

@@ -8,7 +8,14 @@ public class PrizeTicketStateController : State {
 
 	public State prizeTicket;
 
+	public bool loadOnStart = false;
+
 	private void Start() {
+		gameObject.SetActive (loadOnStart);
+
+		if (loadOnStart) {
+			Enter ();
+		}
 	}
 
 	public void SwitchState(State newState) {

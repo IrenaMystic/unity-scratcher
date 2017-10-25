@@ -15,6 +15,8 @@ public class AddPrizeReaction : Reaction
 
 	protected override void ImmediateReaction ()
 	{
-		inventory.AddItem (prize.item, prize.value);
+		if (inventory != null) {
+			inventory.AddItem (prize.item, prize.value);
+		}
 	}
 }

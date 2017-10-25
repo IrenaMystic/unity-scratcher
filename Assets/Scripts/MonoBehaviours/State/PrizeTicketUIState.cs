@@ -28,6 +28,7 @@ public class PrizeTicketUIState : State
 
 	public override void Enter ()
 	{
+		gameObject.SetActive (true);
 		prizeTicketUI.ShowUI (this.prize);
 		fadeElement.Fade (1, fadeDuration, prizeTicketUI.ScreenShown);
 	}
