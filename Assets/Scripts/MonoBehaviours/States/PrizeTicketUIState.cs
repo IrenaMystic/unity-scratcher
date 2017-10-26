@@ -19,6 +19,7 @@ public class PrizeTicketUIState : State
 
 	void Start ()
 	{
+		gameObject.SetActive (false);
 	}
 
 	public void Init (Prize prize)
@@ -30,7 +31,7 @@ public class PrizeTicketUIState : State
 	{
 		gameObject.SetActive (true);
 		prizeTicketUI.ShowUI (this.prize);
-		fadeElement.Fade (1, fadeDuration, prizeTicketUI.ScreenShown);
+		fadeElement.FadeFromTo (0, 1, fadeDuration, prizeTicketUI.ScreenShown);
 	}
 
 	public override void Execute ()

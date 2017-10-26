@@ -117,9 +117,9 @@ public class PrizeTicket : MonoBehaviour {
 	{
 		countFinalPrize--;
 		if (countFinalPrize == 0) {
-			PrizeTicketUIDataReaction reaction = (PrizeTicketUIDataReaction) interactable.GetInitReaction (typeof(PrizeTicketUIDataReaction));
+			PrizeTicketUIDataReaction reaction = (PrizeTicketUIDataReaction) interactable.GetDefaultReaction (typeof(PrizeTicketUIDataReaction));
 			reaction.SetPrize (finalPrize);
-			interactable.SetInitReaction (typeof(PrizeTicketDataReaction), reaction);
+			interactable.SetDefaultReaction (typeof(PrizeTicketUIDataReaction), reaction);
 			interactable.Interact ();
 		}
 	}

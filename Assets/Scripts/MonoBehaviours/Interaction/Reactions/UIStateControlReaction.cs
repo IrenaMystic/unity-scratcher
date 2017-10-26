@@ -8,13 +8,13 @@ public class UIStateControlReaction : Reaction {
 
 	public float fadeDuration = 1f;
 
-	private UIStateController stateController;
+	private SceneManager sceneManager;
 
 	protected override void SpecificInit() {
-		stateController = FindObjectOfType<UIStateController> ();	
+		sceneManager = FindObjectOfType<SceneManager> ();	
 	}
 
 	protected override void ImmediateReaction() {
-		stateController.SwitchState (newState, fadeDuration);	
+		sceneManager.SwitchState (newState, fadeDuration);	
 	}
 }

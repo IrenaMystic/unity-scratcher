@@ -14,22 +14,35 @@ public class FadeUIElement : MonoBehaviour
 		
 	}
 
-	public void Fade (float alpha, float fadeDuration)
+	public void FadeFromTo (float fromAlpha, float toAlpha, float fadeDuration, Action callback)
 	{
-		Fade (alpha, fadeDuration, null);
+		FadeFromTo (fromAlpha, toAlpha, fadeDuration, false, callback);
 	}
 
-	public void Fade (float alpha, float fadeDuration, Action callback)
+	public void FadeFromTo (float fromAlpha, float toAlpha, float fadeDuration, bool changeRaycasts, Action callback)
+	{
+		faderCanvasGroup.alpha = fromAlpha;
+		FadeTo (toAlpha, fadeDuration, changeRaycasts, callback);
+	}
+
+	public void FadeTo (float alpha, float fadeDuration)
+	{
+		FadeTo (alpha, fadeDuration, false, null);
+	}
+
+	public void FadeTo (float alpha, float fadeDuration, bool changeRaycasts, Action callback)
 	{
 		if (!isFading) {
-			faderCanvasGroup.alpha = (alpha == 1) ? 0 : 1;
-			StartCoroutine (DoFade (alpha, fadeDuration, callback));
+			StartCoroutine (DoFade (alpha, fadeDuration, changeRaycasts, callback));
 		}
 	}
 
-	private IEnumerator DoFade (float alpha, float fadeDuration, Action callback)
+	private IEnumerator DoFade (float alpha, float fadeDuration, bool changeRaycasts, Action callback)
 	{
 		isFading = true;
+		if (changeRaycasts) {
+			faderCanvasGroup.blocksRaycasts = true;
+		}
 
 		float fadeSpeed = Mathf.Abs (faderCanvasGroup.alpha - alpha) / fadeDuration;
 
@@ -39,6 +52,9 @@ public class FadeUIElement : MonoBehaviour
 		}
 
 		isFading = false;
+		if (changeRaycasts) {
+			faderCanvasGroup.blocksRaycasts = false;
+		}
 
 		if (callback != null) {
 			callback ();

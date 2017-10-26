@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PrizeTicketState : State {
-
+public class PrizeTicketState : State
+{
 	public float delay = 0.5f;
 
-	void Start () {
-		
+	void Start ()
+	{
+		gameObject.SetActive (false);
 	}
-		
+
 	public override void Enter ()
 	{
 		gameObject.SetActive (true);
@@ -17,7 +18,6 @@ public class PrizeTicketState : State {
 
 	public override void Execute ()
 	{
-		
 	}
 
 	public override void Exit ()
@@ -25,7 +25,8 @@ public class PrizeTicketState : State {
 		StartCoroutine (Deactivate ());
 	}
 
-	private IEnumerator Deactivate() {
+	private IEnumerator Deactivate ()
+	{
 		yield return new WaitForSeconds (delay);
 
 		gameObject.SetActive (false);
