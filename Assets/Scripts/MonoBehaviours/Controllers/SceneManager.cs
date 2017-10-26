@@ -33,6 +33,6 @@ public class SceneManager : MonoBehaviour
 	private void ChangeState() {
 		stateMachine.ChangeState (pendingState);
 		pendingState = null;
-		fadeElement.FadeTo (0, fadeDuration);
+		fadeElement.FadeTo (0, fadeDuration, true, null);
 	}
 }
