@@ -17,7 +17,10 @@ public class SceneManager : MonoBehaviour
 	void Start ()
 	{
 		stateMachine.ChangeState (startingState);
-		fadeElement.FadeFromTo (1, 0, fadeDuration, null);
+
+		DisableInteraction ();
+
+		fadeElement.FadeFromTo (1, 0, fadeDuration, EnableInteraction);
 	}
 
 	public void SwitchState (State newState)
@@ -25,14 +28,31 @@ public class SceneManager : MonoBehaviour
 		SwitchState (newState, fadeDuration);
 	}
 
-	public void SwitchState(State newState, float duration) {
+	public void SwitchState (State newState, float duration)
+	{
 		pendingState = newState;
-		fadeElement.FadeTo (1, duration, true, ChangeState);
+
+		DisableInteraction ();
+
+		fadeElement.FadeTo (1, duration, ChangeState);
 	}
 
-	private void ChangeState() {
+	private void ChangeState ()
+	{
 		stateMachine.ChangeState (pendingState);
+
 		pendingState = null;
-		fadeElement.FadeTo (0, fadeDuration, true, null);
+
+		fadeElement.FadeTo (0, fadeDuration, EnableInteraction);
+	}
+
+	private void EnableInteraction ()
+	{
+		fadeElement.faderCanvasGroup.blocksRaycasts = false;
+	}
+
+	private void DisableInteraction ()
+	{
+		fadeElement.faderCanvasGroup.blocksRaycasts = true;
 	}
 }
